@@ -1,0 +1,29 @@
+create database almacen;
+
+create table productos(
+codigo int auto_increment not null,
+descripcion varchar(60) not null,
+stock int,
+unidad_medida varchar(60) not null,
+observacion varchar(60),
+fecha_registro date,
+constraint PK_productos primary key(codigo)
+);
+
+create table entrada(
+id_entrada int auto_increment not null,
+codigo int not null,
+cantidad int,
+fecha_ingreso date,
+primary key(id_entrada),
+Foreign key (codigo) references productos(codigo) on delete cascade on update cascade
+);
+create table salida(
+id_salida int auto_increment not null,
+codigo int not null,
+cantidad_s int,
+fecha_salida date,
+primary key(id_salida),
+Foreign key (codigo) references productos(codigo) on delete cascade on update cascade
+);
+
